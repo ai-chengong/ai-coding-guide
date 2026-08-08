@@ -18,6 +18,11 @@ test("renders a public Codex-first home page with ecosystem links", async () => 
   assert.match(html, /<title>Coding AiChengGong｜Codex 中文教程<\/title>/);
   assert.match(html, /CODEX-FIRST/);
   assert.match(html, /Codex 为主力/);
+  assert.match(html, /Codex Mission Control/);
+  assert.match(html, /切换深浅主题/);
+  assert.match(html, /Goal[\s\S]*Plan[\s\S]*Build[\s\S]*Verify[\s\S]*Ship/);
+  assert.match(html, /data-theme="dark"/);
+  assert.match(html, /og-mission-control\.png/);
   assert.match(html, /39[\s\S]*Codex 主课/);
   assert.match(html, /53[\s\S]*Claude Code 辅修/);
   assert.match(html, /https:\/\/aichengong\.com/);

@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { ReadingProgress } from "@/components/ReadingProgress";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const navItems = [
   ["Codex 主课", "/codex"],
@@ -10,6 +12,7 @@ const navItems = [
 export function SiteHeader() {
   return (
     <header className="site-header">
+      <ReadingProgress />
       <div className="shell header-inner">
         <Link className="brand" href="/" aria-label="Coding AiChengGong 首页">
           <span className="brand-mark" aria-hidden="true">AC</span>
@@ -23,6 +26,7 @@ export function SiteHeader() {
             <Link href={href} key={href}>{label}</Link>
           ))}
         </nav>
+        <ThemeToggle />
         <a className="ecosystem-link" href="https://aichengong.com">AiChengGong ↗</a>
       </div>
     </header>

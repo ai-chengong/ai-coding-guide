@@ -4,6 +4,19 @@ import type { ReactNode } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
 
+const themeScript = `(() => {
+  try {
+    const saved = localStorage.getItem("coding-aichengong-theme");
+    const theme = saved === "light" || saved === "dark"
+      ? saved
+      : (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
+  } catch (_) {
+    document.documentElement.dataset.theme = "dark";
+  }
+})();`;
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://coding.aichengong.com"),
   title: { default: "Coding AiChengGong｜Codex 中文教程", template: "%s｜不懂AI的陈工" },
@@ -13,14 +26,23 @@ export const metadata: Metadata = {
     type: "website",
     locale: "zh_CN",
     siteName: "Coding AiChengGong",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Coding AiChengGong" }],
+    title: "Coding AiChengGong｜Codex 中文教程",
+    description: "让 Codex 把想法推进到上线：39 篇主课与 53 篇 Claude Code 辅修。",
+    images: [{ url: "/og-mission-control.png", width: 1200, height: 630, alt: "Coding AiChengGong · Codex Mission Control" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Coding AiChengGong｜Codex 中文教程",
+    description: "让 Codex 把想法推进到上线。",
+    images: ["/og-mission-control.png"],
   },
   icons: { icon: "/favicon.svg" },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="zh-CN">
+    <html lang="zh-CN" data-theme="dark" suppressHydrationWarning>
+      <head><script dangerouslySetInnerHTML={{ __html: themeScript }} /></head>
       <body>
         <SiteHeader />
         {children}
