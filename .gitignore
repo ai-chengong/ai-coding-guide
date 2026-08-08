@@ -1,1 +1,13 @@
+node_modules/
+.next/
+dist/
+.wrangler/
+generated/
+public/codex/
+public/claude-code/
+public/og.png
+public/llms.txt
+public/llms-full.txt
+public/search-index.json
+*.tsbuildinfo
 .DS_Store

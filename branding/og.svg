@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="glow" cx="78%" cy="18%" r="72%">
+      <stop offset="0" stop-color="#174f3c" stop-opacity=".75"/>
+      <stop offset=".55" stop-color="#0a1713" stop-opacity=".25"/>
+      <stop offset="1" stop-color="#07100e" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="signal" x1="0" x2="1">
+      <stop stop-color="#59e1a8"/>
+      <stop offset="1" stop-color="#b8ff6d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#07100e"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <g opacity=".32" stroke="#345147">
+    <path d="M0 118h1200M0 512h1200"/>
+    <path d="M800 0v630M1050 0v630"/>
+  </g>
+  <g transform="translate(74 62)">
+    <rect width="54" height="54" rx="11" fill="none" stroke="#59e1a8" stroke-width="2"/>
+    <text x="27" y="34" text-anchor="middle" fill="#59e1a8" font-family="SFMono-Regular,Consolas,monospace" font-size="17" font-weight="700">AC</text>
+    <text x="72" y="24" fill="#eef6f3" font-family="Noto Sans SC,PingFang SC,Microsoft YaHei,sans-serif" font-size="21" font-weight="700">不懂AI的陈工</text>
+    <text x="72" y="47" fill="#6f817a" font-family="SFMono-Regular,Consolas,monospace" font-size="11" letter-spacing="4">CODING LAB</text>
+  </g>
+  <g transform="translate(74 176)">
+    <rect width="208" height="32" rx="16" fill="#10251e" stroke="#2f5748"/>
+    <circle cx="19" cy="16" r="4" fill="#59e1a8"/>
+    <text x="34" y="21" fill="#93d5b8" font-family="SFMono-Regular,Consolas,monospace" font-size="12" font-weight="700" letter-spacing="2">CODEX-FIRST</text>
+    <text x="0" y="105" fill="#edf5f2" font-family="Noto Sans SC,PingFang SC,Microsoft YaHei,sans-serif" font-size="62" font-weight="800">把 AI 编程，</text>
+    <text x="0" y="178" fill="url(#signal)" font-family="Noto Sans SC,PingFang SC,Microsoft YaHei,sans-serif" font-size="72" font-weight="800">真正变成生产力</text>
+    <text x="0" y="232" fill="#98aaa4" font-family="Noto Sans SC,PingFang SC,Microsoft YaHei,sans-serif" font-size="20">Codex 为主，Claude Code 为辅 · 92 篇中文实战教程</text>
+  </g>
+  <g transform="translate(806 156)">
+    <rect width="320" height="300" rx="16" fill="#0a1311" stroke="#2a4038"/>
+    <circle cx="24" cy="24" r="5" fill="#eb7069"/><circle cx="42" cy="24" r="5" fill="#e7be5b"/><circle cx="60" cy="24" r="5" fill="#6bd08b"/>
+    <text x="83" y="29" fill="#6c7d76" font-family="SFMono-Regular,Consolas,monospace" font-size="11">learning-path.sh</text>
+    <path d="M0 48h320" stroke="#25352f"/>
+    <text x="25" y="90" fill="#59e1a8" font-family="SFMono-Regular,Consolas,monospace" font-size="13">$ codex --goal</text>
+    <text x="25" y="124" fill="#a5b4af" font-family="SFMono-Regular,Consolas,monospace" font-size="12">✓ 主工具：Codex</text>
+    <text x="25" y="152" fill="#71817b" font-family="SFMono-Regular,Consolas,monospace" font-size="12">✓ 辅助：Claude Code</text>
+    <path d="M25 177h270" stroke="#25352f" stroke-dasharray="4 5"/>
+    <rect x="25" y="201" width="38" height="27" fill="#59e1a8"/>
+    <text x="44" y="219" text-anchor="middle" fill="#06100d" font-family="SFMono-Regular,Consolas,monospace" font-size="12" font-weight="700">39</text>
+    <text x="77" y="219" fill="#dfe9e5" font-family="Noto Sans SC,PingFang SC,Microsoft YaHei,sans-serif" font-size="14">Codex 主课</text>
+    <rect x="25" y="242" width="38" height="27" fill="#172a24" stroke="#3c5c50"/>
+    <text x="44" y="260" text-anchor="middle" fill="#8ca198" font-family="SFMono-Regular,Consolas,monospace" font-size="12" font-weight="700">53</text>
+    <text x="77" y="260" fill="#8ca198" font-family="Noto Sans SC,PingFang SC,Microsoft YaHei,sans-serif" font-size="14">Claude Code 辅修</text>
+  </g>
+  <text x="74" y="560" fill="#59e1a8" font-family="SFMono-Regular,Consolas,monospace" font-size="15" letter-spacing="1">coding.aichengong.com</text>
+  <text x="1126" y="560" text-anchor="end" fill="#64756f" font-family="SFMono-Regular,Consolas,monospace" font-size="11">MIT · TRACEABLE · OPEN SOURCE</text>
+</svg>
