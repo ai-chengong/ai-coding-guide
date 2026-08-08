@@ -1,8 +1,19 @@
 {
   "$schema": "../../node_modules/wrangler/config-schema.json",
   "name": "coding-aichengong-domain-edge",
-  "main": "worker.mjs",
-  "compatibility_date": "2026-08-06",
+  "main": "../../dist/server/index.js",
+  "compatibility_date": "2026-07-31",
+  "compatibility_flags": ["nodejs_compat"],
+  "no_bundle": true,
+  "rules": [
+    {
+      "type": "ESModule",
+      "globs": ["**/*.js", "**/*.mjs"]
+    }
+  ],
+  "assets": {
+    "directory": "../../dist/client"
+  },
   "workers_dev": true,
   "routes": [
     {

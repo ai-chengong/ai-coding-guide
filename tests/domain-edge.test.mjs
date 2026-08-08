@@ -1,22 +1,29 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
 
-import { buildUpstreamUrl, rewriteLocation } from "../infra/domain-edge/worker.mjs";
+const configUrl = new URL("../infra/domain-edge/wrangler.jsonc", import.meta.url);
 
-test("domain edge fixes the Sites origin while preserving path and query", () => {
-  assert.equal(
-    buildUpstreamUrl("https://untrusted.example/codex/01-what-is-codex?from=test").toString(),
-    "https://coding-aichengong.freya-czy.chatgpt.site/codex/01-what-is-codex?from=test",
-  );
+async function readConfig() {
+  return JSON.parse(await readFile(configUrl, "utf8"));
+}
+
+test("production runtime serves the built vinext worker and assets directly", async () => {
+  const config = await readConfig();
+
+  assert.equal(config.main, "../../dist/server/index.js");
+  assert.equal(config.assets.directory, "../../dist/client");
+  assert.equal(config.no_bundle, true);
+  assert.ok(config.compatibility_flags.includes("nodejs_compat"));
 });
 
-test("domain edge rewrites only redirects back to the public hostname", () => {
-  const upstream = new URL("https://coding-aichengong.freya-czy.chatgpt.site/codex");
+test("production runtime owns the canonical hostname as a custom domain", async () => {
+  const config = await readConfig();
 
-  assert.equal(
-    rewriteLocation("/codex/01-what-is-codex?from=redirect#start", upstream),
-    "https://coding.aichengong.com/codex/01-what-is-codex?from=redirect#start",
-  );
-  assert.equal(rewriteLocation("https://openai.com/", upstream), "https://openai.com/");
-  assert.equal(rewriteLocation(null, upstream), null);
+  assert.deepEqual(config.routes, [
+    {
+      pattern: "coding.aichengong.com",
+      custom_domain: true,
+    },
+  ]);
 });

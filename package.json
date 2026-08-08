@@ -18,7 +18,8 @@
     "test:content": "npm run content:generate && node --test tests/content.test.mjs",
     "test:domain-edge": "node --test tests/domain-edge.test.mjs",
     "test": "npm run test:content && npm run test:domain-edge && npm run build && node --test tests/rendered-html.test.mjs",
-    "deploy:domain-edge": "wrangler deploy --config infra/domain-edge/wrangler.jsonc"
+    "deploy:domain-edge": "npm run build && wrangler deploy --config infra/domain-edge/wrangler.jsonc",
+    "deploy:production": "npm run deploy:domain-edge"
   },
   "dependencies": {
     "next": "16.3.0",

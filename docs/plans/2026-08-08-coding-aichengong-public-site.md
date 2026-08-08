@@ -1,10 +1,10 @@
 # Coding AiChengGong Public Site Implementation Plan
 
-> **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
+> **For Codex:** Execute and verify this plan task-by-task; use Claude Code only as an optional review surface.
 
 **Goal:** Publish `coding.aichengong.com` as a public, Codex-first Chinese AI coding course while preserving a traceable MIT adaptation path to `stormzhang/ai-coding-guide`.
 
-**Architecture:** Keep the upstream Markdown and assets as the editable content truth, then compile article metadata and sanitized HTML into a generated TypeScript module before each build. A vinext/Next-compatible app renders the home page, course indexes, article routes, search index, source/license pages, sitemap, robots, and LLM-readable exports without runtime filesystem access. OpenAI Sites owns content deployment; a minimal, versioned Cloudflare Worker Custom Domain terminates DNS/TLS and transparently maps `coding.aichengong.com` to the public Sites origin. GitHub remains the public source and upstream-sync surface.
+**Architecture:** Keep the upstream Markdown and assets as the editable content truth, then compile article metadata and sanitized HTML into a generated TypeScript module before each build. A vinext/Next-compatible app renders the home page, course indexes, article routes, search index, source/license pages, sitemap, robots, and LLM-readable exports without runtime filesystem access. OpenAI Sites provides a public preview and rollback surface; a versioned Cloudflare Worker Custom Domain runs the same vinext server/client build directly at `coding.aichengong.com` and manages production DNS/TLS. GitHub remains the public source and upstream-sync surface.
 
 **Tech Stack:** TypeScript, React 19, vinext, Next-compatible App Router, Vite, Cloudflare Workers runtime, Marked, sanitize-html, Vitest, Node test runner, OpenAI Sites.
 
@@ -191,7 +191,6 @@ Use the required Obsidian CLI skills, preserve existing frontmatter conventions,
 
 **Files:**
 - Modify: `.openai/hosting.json` only if Sites returns additional non-secret bindings
-- Create: `infra/domain-edge/worker.mjs`
 - Create: `infra/domain-edge/wrangler.jsonc`
 - Create: `tests/domain-edge.test.mjs`
 - Create: `docs/deployment/2026-08-08-custom-domain-edge.md`
@@ -206,13 +205,13 @@ Expected: GitHub contains the exact tested commit.
 
 Use the short-lived credential per command without storing it, and verify the remote commit SHA.
 
-**Step 3: Save and deploy a public Sites version**
+**Step 3: Save and deploy a public Sites preview version**
 
 Save the pushed commit, deploy it, set site access to public, and wait for terminal success.
 
-**Step 4: Add `coding.aichengong.com`**
+**Step 4: Publish `coding.aichengong.com`**
 
-Publish the tested Cloudflare Worker Custom Domain edge. It must use a fixed Sites origin, preserve path/query/method/body, rewrite only same-origin redirects, and let Cloudflare create the hostname DNS record and certificate as one managed operation. Remove the unused pending direct-Sites custom-domain attachment after the edge passes acceptance checks.
+Publish the tested vinext server and client assets directly through a Cloudflare Worker Custom Domain. The production runtime must build before deployment and let Cloudflare create the hostname DNS record and certificate as one managed operation. Keep the generated Sites hostname as the public preview, and remove the unused pending direct-Sites custom-domain attachment after production passes acceptance checks.
 
 **Step 5: Perform unauthenticated acceptance checks**
 

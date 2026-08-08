@@ -60,9 +60,9 @@ npm test
 
 ## 部署
 
-站点内容由 OpenAI Sites 托管，项目 ID 固定记录在 `.openai/hosting.json`。`coding.aichengong.com` 通过仓库内可追溯的 Cloudflare Custom Domain 边缘层接入 Sites，自动管理 DNS 与 HTTPS；架构、部署和迁移边界见 [`docs/deployment/2026-08-08-custom-domain-edge.md`](docs/deployment/2026-08-08-custom-domain-edge.md)。
+OpenAI Sites 提供公开预览与回退地址，项目 ID 固定记录在 `.openai/hosting.json`。正式域名 `coding.aichengong.com` 由仓库内可追溯的 Cloudflare Worker 直接运行同一份 vinext 构建产物，并通过 Custom Domain 自动管理 DNS 与 HTTPS；架构、部署和迁移边界见 [`docs/deployment/2026-08-08-custom-domain-edge.md`](docs/deployment/2026-08-08-custom-domain-edge.md)。
 
-部署遵循：测试 → 提交并推送 → 保存 Sites 版本 → 公开发布 → 发布域名边缘层 → HTTPS 与未登录访问验收。
+部署遵循：测试 → 提交并推送 → 保存 Sites 预览版本 → 发布正式 Worker → HTTPS 与未登录访问验收。
 
 ## License
 
