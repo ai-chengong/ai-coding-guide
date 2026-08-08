@@ -4,7 +4,7 @@
 
 **Goal:** Publish `coding.aichengong.com` as a public, Codex-first Chinese AI coding course while preserving a traceable MIT adaptation path to `stormzhang/ai-coding-guide`.
 
-**Architecture:** Keep the upstream Markdown and assets as the editable content truth, then compile article metadata and sanitized HTML into a generated TypeScript module before each build. A vinext/Next-compatible app renders the home page, course indexes, article routes, search index, source/license pages, sitemap, robots, and LLM-readable exports without runtime filesystem access. OpenAI Sites owns deployment and the custom domain; GitHub remains the public source and upstream-sync surface.
+**Architecture:** Keep the upstream Markdown and assets as the editable content truth, then compile article metadata and sanitized HTML into a generated TypeScript module before each build. A vinext/Next-compatible app renders the home page, course indexes, article routes, search index, source/license pages, sitemap, robots, and LLM-readable exports without runtime filesystem access. OpenAI Sites owns content deployment; a minimal, versioned Cloudflare Worker Custom Domain terminates DNS/TLS and transparently maps `coding.aichengong.com` to the public Sites origin. GitHub remains the public source and upstream-sync surface.
 
 **Tech Stack:** TypeScript, React 19, vinext, Next-compatible App Router, Vite, Cloudflare Workers runtime, Marked, sanitize-html, Vitest, Node test runner, OpenAI Sites.
 
@@ -191,6 +191,10 @@ Use the required Obsidian CLI skills, preserve existing frontmatter conventions,
 
 **Files:**
 - Modify: `.openai/hosting.json` only if Sites returns additional non-secret bindings
+- Create: `infra/domain-edge/worker.mjs`
+- Create: `infra/domain-edge/wrangler.jsonc`
+- Create: `tests/domain-edge.test.mjs`
+- Create: `docs/deployment/2026-08-08-custom-domain-edge.md`
 
 **Step 1: Commit and push GitHub source**
 
@@ -208,7 +212,7 @@ Save the pushed commit, deploy it, set site access to public, and wait for termi
 
 **Step 4: Add `coding.aichengong.com`**
 
-Use the Sites custom-domain response as the sole DNS record source, apply the exact Cloudflare records, and refresh until routing and SSL are active.
+Publish the tested Cloudflare Worker Custom Domain edge. It must use a fixed Sites origin, preserve path/query/method/body, rewrite only same-origin redirects, and let Cloudflare create the hostname DNS record and certificate as one managed operation. Remove the unused pending direct-Sites custom-domain attachment after the edge passes acceptance checks.
 
 **Step 5: Perform unauthenticated acceptance checks**
 

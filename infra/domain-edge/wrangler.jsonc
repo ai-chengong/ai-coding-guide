@@ -1,0 +1,16 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "coding-aichengong-domain-edge",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-08-06",
+  "workers_dev": true,
+  "routes": [
+    {
+      "pattern": "coding.aichengong.com",
+      "custom_domain": true
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
+}
