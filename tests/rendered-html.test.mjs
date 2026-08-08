@@ -19,15 +19,30 @@ test("renders a public Codex-first home page with ecosystem links", async () => 
   assert.match(html, /CODEX-FIRST/);
   assert.match(html, /Codex 为主力/);
   assert.match(html, /Codex Mission Control/);
+  assert.match(html, /GRAPHICS TRACE/);
+  assert.match(html, /分析 Android 图形闪烁并形成证据闭环/);
+  assert.match(html, /graphics\.aichengong\.com/);
   assert.match(html, /切换深浅主题/);
   assert.match(html, /Goal[\s\S]*Plan[\s\S]*Build[\s\S]*Verify[\s\S]*Ship/);
   assert.match(html, /data-theme="dark"/);
+  assert.doesNotMatch(html, /prefers-color-scheme/);
   assert.match(html, /og-mission-control\.png/);
   assert.match(html, /39[\s\S]*Codex 主课/);
   assert.match(html, /53[\s\S]*Claude Code 辅修/);
   assert.match(html, /https:\/\/aichengong\.com/);
   assert.match(html, /https:\/\/graphics\.aichengong\.com/);
   assert.match(html, /https:\/\/github\.com\/ai-chengong\/ai-coding-guide/);
+});
+
+test("presents AiChengGong as the site repository and upstream as the content baseline", async () => {
+  const response = await request("/sources");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /本站主仓库/);
+  assert.match(html, /ai-chengong\/ai-coding-guide/);
+  assert.match(html, /上游内容基线/);
+  assert.match(html, /首版参考项目/);
+  assert.match(html, /stormzhang\/ai-coding-guide/);
 });
 
 test("renders representative lessons with visible attribution", async () => {

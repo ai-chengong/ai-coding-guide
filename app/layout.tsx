@@ -9,7 +9,7 @@ const themeScript = `(() => {
     const saved = localStorage.getItem("coding-aichengong-theme");
     const theme = saved === "light" || saved === "dark"
       ? saved
-      : (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      : "dark";
     document.documentElement.dataset.theme = theme;
     document.documentElement.style.colorScheme = theme;
   } catch (_) {

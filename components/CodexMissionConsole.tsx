@@ -4,14 +4,14 @@ import { useEffect, useState } from "react";
 
 const missions = [
   {
+    command: 'codex exec "分析 Android 图形闪烁并形成证据闭环"',
+    label: "GRAPHICS TRACE",
+    steps: ["已读取 SurfaceFlinger、HWC 与 DRM 日志", "已定位 DEVICE → CLIENT 混合切换链路", "最小修复与回归场景验证通过", "分析报告已归档到 graphics.aichengong.com"],
+  },
+  {
     command: 'codex --goal "把想法推进到上线"',
     label: "PRODUCT SHIP",
     steps: ["已读取 AGENTS.md 与项目约束", "已生成可审查的执行计划", "测试通过：92 lessons / 0 broken links", "已发布：coding.aichengong.com"],
-  },
-  {
-    command: 'codex exec "修复问题并补齐回归测试"',
-    label: "BUG TO PROOF",
-    steps: ["已定位失败链路与相邻消费者", "最小修复已写入工作区", "回归测试与静态检查通过", "变更已整理为可追溯提交"],
   },
   {
     command: 'codex --skills "把重复流程自动化"',
