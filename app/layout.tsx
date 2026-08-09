@@ -50,7 +50,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <div className="shell footer-grid">
             <div><strong>不懂AI的陈工</strong><p>保持好奇，边做边学。Codex 主力执行，Claude Code 辅助协作。</p></div>
             <div><span>ECOSYSTEM</span><a href="https://aichengong.com">主站</a><a href="https://news.aichengong.com">News</a><a href="https://graphics.aichengong.com">Graphics</a></div>
-            <div><span>OPEN SOURCE</span><a href="https://github.com/ai-chengong/ai-coding-guide">GitHub</a><Link href="/sources">来源说明</Link><Link href="/license">MIT License</Link></div>
+            <div><span>OPEN SOURCE</span><a href="https://github.com/ai-chengong/ai-coding-guide">GitHub</a><Link className="third-party-link" href="/license">第三方许可</Link></div>
           </div>
         </footer>
       </body>

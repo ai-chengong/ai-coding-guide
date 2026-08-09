@@ -32,28 +32,39 @@ test("renders a public Codex-first home page with ecosystem links", async () => 
   assert.match(html, /https:\/\/aichengong\.com/);
   assert.match(html, /https:\/\/graphics\.aichengong\.com/);
   assert.match(html, /https:\/\/github\.com\/ai-chengong\/ai-coding-guide/);
+  assert.doesNotMatch(html, /href="\/sources"/);
 });
 
-test("presents AiChengGong as the site repository and upstream as the content baseline", async () => {
+test("presents AiChengGong as the site repository without foregrounding third-party details", async () => {
   const response = await request("/sources");
   assert.equal(response.status, 200);
   const html = await response.text();
   assert.match(html, /本站主仓库/);
   assert.match(html, /ai-chengong\/ai-coding-guide/);
-  assert.match(html, /上游内容基线/);
-  assert.match(html, /首版参考项目/);
-  assert.match(html, /stormzhang\/ai-coding-guide/);
+  assert.doesNotMatch(html, /stormzhang\/ai-coding-guide/);
+  assert.match(html, /href="\/license"/);
 });
 
-test("renders representative lessons with visible attribution", async () => {
+test("keeps third-party attribution compact at the end of representative lessons", async () => {
   for (const path of ["/codex/01-what-is-codex", "/claude-code/01-what-is-claude-code"]) {
     const response = await request(path);
     assert.equal(response.status, 200, path);
     const html = await response.text();
-    assert.match(html, /可追溯改编说明/);
-    assert.match(html, /不代表“不懂AI的陈工”的个人经历/);
-    assert.match(html, /github\.com\/stormzhang\/ai-coding-guide\/blob\/7f493ed/);
+    assert.doesNotMatch(html, /可追溯改编说明/);
+    assert.doesNotMatch(html, /github\.com\/stormzhang\/ai-coding-guide\/blob\/7f493ed/);
+    assert.match(html, /class="article-license-link"/);
+    assert.match(html, /href="\/license"/);
   }
+});
+
+test("keeps the complete upstream notice inside one collapsed license disclosure", async () => {
+  const response = await request("/license");
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  assert.match(html, /<details class="license-disclosure">/);
+  assert.match(html, /stormzhang\/ai-coding-guide/);
+  assert.match(html, /Copyright \(c\) 2026 stormzhang/);
+  assert.match(html, /The above copyright notice and this permission notice shall be included/);
 });
 
 test("serves SEO routes for all 92 lessons", async () => {

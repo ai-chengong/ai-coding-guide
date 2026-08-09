@@ -29,16 +29,11 @@ export function ArticleShell({ article }: { article: Article }) {
           <p>{article.description}</p>
         </header>
 
-        <div className="provenance-note">
-          <strong>可追溯改编说明</strong>
-          <p>本课首版继承自 MIT 开源基线。文中尚未重写的第一人称经历属于原项目作者或贡献者，不代表“不懂AI的陈工”的个人经历。</p>
-          <a href={article.sourceUrl} target="_blank" rel="noreferrer">查看这一课的基线源文件 ↗</a>
-        </div>
-
         <div className="article-body" dangerouslySetInnerHTML={{ __html: article.html }} />
 
         <footer className="article-footer">
           <p>工具变化很快：涉及功能、价格和可用范围时，请以官方文档为准。</p>
+          <Link className="article-license-link" href="/license">第三方许可</Link>
           <div className="pager">
             {previous ? <Link href={previous.path}><small>上一篇</small><strong>{previous.title}</strong></Link> : <span />}
             {next ? <Link className="pager-next" href={next.path}><small>下一篇</small><strong>{next.title}</strong></Link> : <span />}

@@ -5,8 +5,6 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 const navItems = [
   ["Codex 主课", "/codex"],
   ["Claude Code", "/claude-code"],
-  ["来源", "/sources"],
-  ["许可证", "/license"],
 ] as const;
 
 export function SiteHeader() {

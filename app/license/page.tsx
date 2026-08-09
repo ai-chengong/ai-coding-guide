@@ -1,13 +1,18 @@
 import type { Metadata } from "next";
+import { baselineCommit } from "@/lib/content";
 
-export const metadata: Metadata = { title: "MIT License", description: "Coding AiChengGong 课程基线的 MIT 许可证与版权说明。", alternates: { canonical: "/license" } };
+export const metadata: Metadata = { title: "第三方许可", description: "Coding AiChengGong 使用的第三方开源内容与许可证说明。", alternates: { canonical: "/license" } };
 
 export default function LicensePage() {
   return (
     <main className="shell info-page">
-      <span className="kicker">OPEN SOURCE</span><h1>MIT License</h1>
-      <p>允许使用、复制、修改、合并、发布与再授权，但必须在软件的重要副本中保留原版权声明与许可证。</p>
-      <section className="info-section"><pre className="license-text">{`MIT License
+      <span className="kicker">LEGAL</span><h1>第三方许可</h1>
+      <p>本站主仓库及新增内容由 AiChengGong 持续维护。</p>
+      <section className="info-section"><h2>本站仓库</h2><p><a href="https://github.com/ai-chengong/ai-coding-guide">ai-chengong/ai-coding-guide</a></p></section>
+      <details className="license-disclosure">
+        <summary>查看第三方 MIT 许可信息</summary>
+        <p>部分首版课程内容参考自 <a href="https://github.com/stormzhang/ai-coding-guide">stormzhang/ai-coding-guide</a>，采用的可追溯基线为 <a href={`https://github.com/stormzhang/ai-coding-guide/commit/${baselineCommit}`}><code>{baselineCommit}</code></a>。</p>
+        <pre className="license-text">{`MIT License
 
 Copyright (c) 2026 stormzhang
 
@@ -27,8 +32,8 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.`}</pre></section>
-      <section className="info-section"><h2>本站新增部分</h2><p>除另有说明外，AiChengGong 新增的站点代码、课程组织与品牌层同样按仓库 MIT License 发布。详见 <a href="https://github.com/ai-chengong/ai-coding-guide">公开仓库</a>。</p></section>
+SOFTWARE.`}</pre>
+      </details>
     </main>
   );
 }
